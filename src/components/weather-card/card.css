@@ -3,19 +3,6 @@
     padding: 0;
     --main-color-day: #4dabfb;
     --additional-color-day: #3b88d6;
-    --main-color-night: #2e313a;
+    --main-color-night: hsl(0, 0%, 100%);
     --additional-color-night: #30343c;
-}
-
-.card-wrapper {
-
-}
-.options-container {
-
-}
-.weather-container {
-
-}
-.restParams-container {
-
 }
