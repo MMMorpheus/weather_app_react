@@ -6,6 +6,7 @@ import {StyledIconBase} from '@styled-icons/styled-icon'
 import { EditLocationAlt } from '@styled-icons/material/EditLocationAlt';
 import { Search } from '@styled-icons/material/Search';
 
+// Animation func defined using styled-components
 const flip = keyframes`
 0% {
     transform: perspective(400px) rotateY(0);
@@ -28,6 +29,7 @@ const flip = keyframes`
     animation-timing-function: ease-in;
 }
 `
+// Animated block with an icon
 const FlippedDiv = styled.div`
     position: absolute;
     top: 1.9rem;
@@ -37,6 +39,14 @@ const FlippedDiv = styled.div`
             animation: ${flip} 2s ease;
         }
 `
+// An icon wrapper
+const IconStyleWrapper = styled.div`
+  ${StyledIconBase} {
+    color: black;
+    width: 36px;
+  }
+`
+// Styled section using styled-components
 const SearchContainer = styled.div`
     width: 400px;
     display: flex;
@@ -45,6 +55,7 @@ const SearchContainer = styled.div`
     padding: 10px 0;
     position: relative;
 `
+// Styled input using styled-components
 const StyledInput = styled.input`
     width: 100%;
     height: 75%;
@@ -53,13 +64,9 @@ const StyledInput = styled.input`
     border-radius: 1rem;
     font-size: 1.9rem;
     text-indent: 3rem;
+    text-transform: uppercase;
 `
-const IconStyleWrapper = styled.div`
-  ${StyledIconBase} {
-    color: black;
-    width: 36px;
-  }
-`
+// Styled button using styled-components
 const SearchBtn = styled.button`
     position: absolute;
     top: 1.9rem;
