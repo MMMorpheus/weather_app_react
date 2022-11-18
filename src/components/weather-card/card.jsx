@@ -4,27 +4,27 @@ import Content from './bricks/content';
 
 // Styled components and material icons
 import styled from 'styled-components';
+import {StyledIconBase} from '@styled-icons/styled-icon'
 import { MoreHoriz } from '@styled-icons/material/MoreHoriz';
 import {Tune} from '@styled-icons/material/Tune';
 
 // Images
 import sunny from '../../weather_icons/main/clear_sky_d.png'
 
-const MoreIcon = styled(MoreHoriz)`
+// An icon wrapper
+const IconStyleWrapper = styled.div`
+  ${StyledIconBase} {
     color: white;
     width: 36px;
-`
-const SettingsIcon = styled(Tune)`
-    color: white;
-    width: 36px;
+  }
 `
 const WeatherCard = styled.article`
     background-color: #4dabfb;
     color: white;
     width: 400px;
     height: 600px;
-    border-radius: 15px;
-    padding: 1rem;
+    border-radius: 2rem;
+    padding: 1.5rem;
     position: relative;
     overflow: hidden;
     z-index: 0;
@@ -46,21 +46,33 @@ const Temperature = styled(Content)`
     &:after {
         content: '°';
         font-size: 4rem;
-        font-weight: 200;
+        font-weight: 300;
         position: absolute;
         color: hsl(0, 0%, 85%)
-            }     
+    }     
 `
+// const Units = styled(Content)`
+//     position: relative;
+//     &:after {
+//         content: ${units};
+//         font-size: 1rem;
+//         font-weight: 300;
+//         position: absolute;
+//         bottom: 0.2rem;
+//         color: hsl(0, 0%, 95%)
+//     }
+// `
+
 const Card = ({data}) => {
 
     const roundTemperature = Math.round(data.main.temp);
 
     return (
         <WeatherCard>
-            <Flex justify="space-between">
-                <p>Day</p>
-                <MoreIcon />
-                <SettingsIcon />
+            <Flex justify="space-between" align="center">
+                <Content weight="400">Day</Content>
+                <IconStyleWrapper><MoreHoriz/></IconStyleWrapper>
+                <IconStyleWrapper><Tune/></IconStyleWrapper>
             </Flex>
             <Flex direction="column" justify="center" align="center">
                 <img src={sunny}/>
@@ -69,16 +81,16 @@ const Card = ({data}) => {
             </Flex>
             <Flex justify="space-around">
                 <Flex direction="column" justify="center" align="center" margin="2rem 0 0 0">
-                    <Content>Wind now</Content>
-                    <Content size="2rem" weight="600">{data.wind.speed}km</Content>
+                    <Content padding="0 0 1.3rem 0">Wind now</Content>
+                    <Content size="2rem" weight="600" addUnits units="km">{data.wind.speed}</Content>
                 </Flex>
                 <Flex direction="column" justify="center" align="center" margin="2rem 0 0 0">
-                    <Content>Humidity</Content>
-                    <Content size="2rem" weight="600">{data.main.humidity}%</Content>
+                    <Content padding="0 0 1.3rem 0">Humidity</Content>
+                    <Content size="2rem" weight="600" addUnits units="%">{data.main.humidity}</Content>
                 </Flex>
                 <Flex direction="column" justify="center" align="center" margin="2rem 0 0 0">
-                    <Content>Precipitaition</Content>
-                    <Content size="2rem" weight="600">87%</Content>
+                    <Content padding="0 0 1.3rem 0">Precipitaition</Content>
+                    <Content size="2rem" weight="600" addUnits units="%">87</Content>
                 </Flex>
             </Flex>
         </WeatherCard>
