@@ -1,5 +1,6 @@
 import React from 'react';
-import './card.css';
+import Flex from './bricks/flex';
+import Content from './bricks/content';
 
 // Styled components and material icons
 import styled from 'styled-components';
@@ -26,6 +27,7 @@ const WeatherCard = styled.article`
     padding: 1rem;
     position: relative;
     overflow: hidden;
+    z-index: 0;
         &::after {
         content: '';
         position: absolute;
@@ -37,79 +39,48 @@ const WeatherCard = styled.article`
         width: 150%;
         border-top-left-radius: 50%;
         border-top-right-radius: 50%;
-        z-index: 0;
+        z-index: -1;
         }
 `
-const Options = styled.div`
-    display: flex;
-    justify-content: space-between;
-
-`
-const WeatherContent = styled.section`
-        position: relative;
-        z-index: 1;
-        display: flex;
-        flex-direction: column;
-        justify-content: center;
-        align-items: center;
-`
-const Temp = styled.p`
-        margin: 0;
-        font-size: 6rem;
-        font-weight: 800;
-        position: relative;
-            &:after {
-                content: '°';
-                font-size: 4rem;
-                font-weight: 200;
-                position: absolute;
-                color: hsl(0, 0%, 85%)
+const Temperature = styled(Content)`
+    &:after {
+        content: '°';
+        font-size: 4rem;
+        font-weight: 200;
+        position: absolute;
+        color: hsl(0, 0%, 85%)
             }     
 `
-const OtherOptions = styled.section`
-            display: flex;
-            justify-content: space-around;
-            position: relative;
-            z-index: 5;
-`
-const SmallMeasurementContainer = styled.div`
-            margin-top: 2rem;
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-            align-items: center;
-`
-
 const Card = ({data}) => {
 
     const roundTemperature = Math.round(data.main.temp);
 
     return (
         <WeatherCard>
-            <Options>
+            <Flex justify="space-between">
                 <p>Day</p>
                 <MoreIcon />
                 <SettingsIcon />
-            </Options>
-            <WeatherContent>
+            </Flex>
+            <Flex direction="column" justify="center" align="center">
                 <img src={sunny}/>
-                <Temp>{roundTemperature}</Temp>
-                <p style={{fontSize: '1.5rem'}}>{data.name}</p>
-            </WeatherContent>
-            <OtherOptions>
-                <SmallMeasurementContainer>
-                    <p>Wind now</p>
-                    <p>{data.wind.speed}km</p>
-                </SmallMeasurementContainer>
-                <SmallMeasurementContainer>
-                    <p>Humidity</p>
-                    <p>{data.main.humidity}%</p>
-                </SmallMeasurementContainer>
-                <SmallMeasurementContainer>
-                    <p>Precipitaition</p>
-                    <p>87%</p>
-                </SmallMeasurementContainer>
-            </OtherOptions>
+                <Temperature size="6rem" weight="800">{roundTemperature}</Temperature>
+                <Content size="1.7rem">{data.name}</Content>
+            </Flex>
+            <Flex justify="space-around">
+                <Flex direction="column" justify="center" align="center" margin="2rem 0 0 0">
+                    <Content>Wind now</Content>
+                    <Content size="2rem" weight="600">{data.wind.speed}km</Content>
+                </Flex>
+                <Flex direction="column" justify="center" align="center" margin="2rem 0 0 0">
+                    <Content>Humidity</Content>
+                    <Content size="2rem" weight="600">{data.main.humidity}%</Content>
+                </Flex>
+                <Flex direction="column" justify="center" align="center" margin="2rem 0 0 0">
+                    <Content>Precipitaition</Content>
+                    <Content size="2rem" weight="600">87%</Content>
+                </Flex>
+            </Flex>
         </WeatherCard>
     );
 }

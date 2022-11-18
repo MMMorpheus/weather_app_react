@@ -5,6 +5,7 @@ import './index.css'
 
 import {createGlobalStyle} from 'styled-components'
 import '@fontsource/roboto/400.css';
+import '@fontsource/roboto/300.css';
 
 const GlobalStyles = createGlobalStyle`
   * {
