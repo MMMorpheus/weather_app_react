@@ -45,7 +45,6 @@ const Options = styled.div`
     justify-content: space-between;
 
 `
-
 const WeatherContent = styled.section`
         position: relative;
         z-index: 1;
@@ -81,7 +80,10 @@ const SmallMeasurementContainer = styled.div`
             align-items: center;
 `
 
-const Card = () => {
+const Card = ({data}) => {
+
+    const roundTemperature = Math.round(data.main.temp);
+
     return (
         <WeatherCard>
             <Options>
@@ -91,17 +93,17 @@ const Card = () => {
             </Options>
             <WeatherContent>
                 <img src={sunny}/>
-                <Temp>32</Temp>
-                <p style={{fontSize: '1.5rem'}}>Monterey</p>
+                <Temp>{roundTemperature}</Temp>
+                <p style={{fontSize: '1.5rem'}}>{data.name}</p>
             </WeatherContent>
             <OtherOptions>
                 <SmallMeasurementContainer>
                     <p>Wind now</p>
-                    <p>15km</p>
+                    <p>{data.wind.speed}km</p>
                 </SmallMeasurementContainer>
                 <SmallMeasurementContainer>
                     <p>Humidity</p>
-                    <p>32%</p>
+                    <p>{data.main.humidity}%</p>
                 </SmallMeasurementContainer>
                 <SmallMeasurementContainer>
                     <p>Precipitaition</p>

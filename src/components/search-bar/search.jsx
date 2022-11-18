@@ -1,4 +1,5 @@
-import React, {useState} from 'react';
+import React, {useState, useEffect} from 'react';
+
 
 import styled from 'styled-components';
 import {keyframes} from 'styled-components'
@@ -62,7 +63,7 @@ const StyledInput = styled.input`
     border: none;
     outline: none;
     border-radius: 1rem;
-    font-size: 1.9rem;
+    font-size: 1.7rem;
     text-indent: 3rem;
     text-transform: uppercase;
 `
@@ -75,23 +76,19 @@ const SearchBtn = styled.button`
     background-color: inherit;
     cursor: pointer;
 `
-const Input = () => {
-
-    const [inValue, setInValue] = useState('')
-    const changer = (event) => {
-        setInValue(event.target.value)
-
-    }
+const SearchBar = ({location, setLocation, request}) => {
+        
+    
 
     return (
         <SearchContainer>
             <FlippedDiv><IconStyleWrapper><EditLocationAlt /></IconStyleWrapper></FlippedDiv>
-            <StyledInput type='text' name='inValue' value={inValue} onChange={changer} placeholder="Enter location"/>
-            <SearchBtn>
+            <StyledInput type='text' name='location' value={location} onChange={({target}) => {setLocation(target.value)}} placeholder="enter your location"/>
+            <SearchBtn onClick={request}>
                 <IconStyleWrapper><Search /></IconStyleWrapper>
             </SearchBtn>
         </SearchContainer>
     );
 }
 
-export default Input;
+export default SearchBar;
