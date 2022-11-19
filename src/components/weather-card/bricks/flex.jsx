@@ -7,8 +7,9 @@ const StyledFlex = styled.div`
     justify-content: ${({justify}) => justify || 'stretch'};
     align-items: ${({align}) => align || 'stretch'};
     margin: ${({margin}) => margin || '0'};
-    position: ${({position}) => position || 'static'}
-    z-index: ${({zIndex}) => zIndex || 'auto'}
+    padding: ${({padding}) => padding || '0'};
+    position: ${({position}) => position || 'static'};
+    z-index: ${({zIndex}) => zIndex || 'auto'};
 `
 
 const Flex = (props) => {

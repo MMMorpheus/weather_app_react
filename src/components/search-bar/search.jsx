@@ -1,4 +1,5 @@
-import React, {useState, useEffect} from 'react';
+import React from 'react';
+import Flex from '../weather-card/bricks/flex';
 
 
 import styled from 'styled-components';
@@ -47,15 +48,11 @@ const IconStyleWrapper = styled.div`
     width: 36px;
   }
 `
-// Styled section using styled-components
-const SearchContainer = styled.div`
+const SearchContainer = styled(Flex)`
     width: 400px;
-    display: flex;
-    align-items: center;
     height: 100px;
-    padding: 10px 0;
-    position: relative;
 `
+
 // Styled input using styled-components
 const StyledInput = styled.input`
     width: 100%;
@@ -74,18 +71,30 @@ const SearchBtn = styled.button`
     right: 1rem;
     border: none;
     background-color: inherit;
+    border-radius: 50%;
     cursor: pointer;
+        &:hover {
+            background-color: #9cacbb;
+            color: white;
+            transition: .3s ease-in-out;
+        }
 `
+
+const HoveredIcon = styled(Search)`
+    &{SearchBtn}:hover {
+        color: #ffff;
+    }
+  
+`;
+
 const SearchBar = ({location, setLocation, request}) => {
-        
-    
 
     return (
-        <SearchContainer>
+        <SearchContainer align="center" padding="10px 0" position="relative">
             <FlippedDiv><IconStyleWrapper><EditLocationAlt /></IconStyleWrapper></FlippedDiv>
             <StyledInput type='text' name='location' value={location} onChange={({target}) => {setLocation(target.value)}} placeholder="enter your location"/>
             <SearchBtn onClick={request}>
-                <IconStyleWrapper><Search /></IconStyleWrapper>
+                <IconStyleWrapper><HoveredIcon /></IconStyleWrapper>
             </SearchBtn>
         </SearchContainer>
     );

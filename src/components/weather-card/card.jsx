@@ -51,18 +51,6 @@ const Temperature = styled(Content)`
         color: hsl(0, 0%, 85%)
     }     
 `
-// const Units = styled(Content)`
-//     position: relative;
-//     &:after {
-//         content: ${units};
-//         font-size: 1rem;
-//         font-weight: 300;
-//         position: absolute;
-//         bottom: 0.2rem;
-//         color: hsl(0, 0%, 95%)
-//     }
-// `
-
 const Card = ({data}) => {
 
     const roundTemperature = Math.round(data.main.temp);

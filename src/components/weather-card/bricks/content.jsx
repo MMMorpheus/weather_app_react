@@ -16,8 +16,9 @@ const StyledP = styled.p`
             position: absolute;
             bottom: 0.2rem;
             color: hsl(0, 0%, 95%)
+        }
+    `
     }
-    `}
 `
 const Content = ({units, ...props}) => {
     return <StyledP data-units={units} {...props}/>
