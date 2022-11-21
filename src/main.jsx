@@ -13,8 +13,6 @@ const GlobalStyles = createGlobalStyle`
     padding: 0;
     box-sizing: border-box;
     font-family: Roboto;
-
-
   }
 `
 
@@ -22,7 +20,5 @@ ReactDOM.createRoot(document.getElementById('root')).render(
  <>
     <GlobalStyles />
     <App />
- </>
- 
- 
+ </>  
 )

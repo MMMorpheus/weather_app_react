@@ -1,15 +1,13 @@
 import React from 'react';
 import Flex from './bricks/flex';
 import Content from './bricks/content';
+import conditions from '../../weather_icons/main/conditions';
 
 // Styled components and material icons
 import styled from 'styled-components';
 import {StyledIconBase} from '@styled-icons/styled-icon'
 import { MoreHoriz } from '@styled-icons/material/MoreHoriz';
 import {Tune} from '@styled-icons/material/Tune';
-
-// Images
-import sunny from '../../weather_icons/main/clear_sky_d.png'
 
 // An icon wrapper
 const IconStyleWrapper = styled.div`
@@ -28,6 +26,7 @@ const WeatherCard = styled.article`
     position: relative;
     overflow: hidden;
     z-index: 0;
+    transition: .6s ease-out;
         &::after {
         content: '';
         position: absolute;
@@ -54,6 +53,37 @@ const Temperature = styled(Content)`
 const Card = ({data}) => {
 
     const roundTemperature = Math.round(data.main.temp);
+    let imageSrc;
+    switch(data.weather[0].main){
+        case 'clear sky':
+            imageSrc = conditions[0].src;
+            break;
+        case 'few clouds':
+            imageSrc = conditions[1].src;
+            break;
+        case 'scattered clouds':
+            imageSrc = conditions[2].src;
+            break;
+        case 'broken clouds':
+            imageSrc = conditions[3].src;
+            break;
+        case 'shower rain':
+            imageSrc = conditions[4].src;
+            break;
+        case 'rain':
+            imageSrc = conditions[5].src;
+            break;
+        case 'thunderstorm':
+            imageSrc = conditions[6].src;
+            break;
+        case 'snow':
+            imageSrc = conditions[7].src;
+            break;
+        case 'mist':
+            imageSrc = conditions[8].src;
+            break;
+    }
+    console.log(imageSrc)
 
     return (
         <WeatherCard>
@@ -63,7 +93,7 @@ const Card = ({data}) => {
                 <IconStyleWrapper><Tune/></IconStyleWrapper>
             </Flex>
             <Flex direction="column" justify="center" align="center">
-                <img src={sunny}/>
+                <img src={imageSrc}/>
                 <Temperature size="6rem" weight="800">{roundTemperature}</Temperature>
                 <Content size="1.7rem">{data.name}</Content>
             </Flex>
